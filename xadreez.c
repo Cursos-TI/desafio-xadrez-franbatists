@@ -1,31 +1,33 @@
 #include <stdio.h>
 
-void movertorre (int movimentação) {
-    if(movimentação > 0) {
-       printf("Direita\n");
-       movertorre(movimentação - 1);
-    }
- }
-  void moverbispodiagonal (int movimentação) {
-    if(movimentação > 0) {
-       printf("Cima, direita\n");
-       moverbispodiagonal(movimentação - 1);
-    }
-  }
- 
-  void moverrainha (int movimentação) {
-    if(movimentação > 0) {
-       printf("Esquerda\n");
-       moverrainha (movimentação - 1);
-    }
-  }
+// Declarações das funções
+void movertorre(int movimentacao);
+void moverBispo(int movimentacao);
+void moverRainha(int movimentacao);
+void moverCavalo();
+void moverBispoLoops();
 
 int main(){
+
+   printf("\nMovimento da torre (recursivo):\n");
+   movertorre(5);
+
+   printf("\nMovimento do Bispo (recursivo):\n");
+   moverBispo(5);
+
+   printf("\nMovimento do Bispo (loops aninhados):\n");
+   moverBispoLoops();
+
+   printf("\nMovimento da rainha (recursivo):\n");
+   moverRainha(8);
+
+   printf("\nMovimento do Cavalo (Loops complexo):\n");
+
 
 int i;
 
 printf("Movimentos da torre\n");
-movertorre(5);
+
 
 printf("Digite o numero de casas para torre andar para direita: ");
 scanf("%d", &i);
@@ -73,9 +75,8 @@ for( int i = 0; i < 5; i++)
 printf("---------------------------\n");
 
 printf("Movimentos do bispo");
-moverbispodiagonal(5);
 
- // Movimentação para diagonais em 5 casas com o bispo
+  // Movimentação para diagonais em 5 casas com o bispo
 
 do
 {
@@ -110,7 +111,7 @@ while (i < 8)
 }
 
 printf("---------------------------\n");
-moverrainha(8);
+
 
 // Movimentação pra esquerda em 8 casas com a rainha
 
@@ -191,10 +192,49 @@ while (j <= 1) {
 return 0;
 }
 
-   
+   // Implentações das funções
+   void movertorre(int movimentacao) {
+      if (movimentacao <= 0) return;
+      printf("Direita - movimento %d\n", 6 - movimentacao);
+      movertorre(movimentacao - 1);
+   }
 
+   void moverBispo(int movimentacao) {
+      if (movimentacao <= 0) return;
+      printf("Cima, Direita - Casa %d\n", 6 - movimentacao);
+   }
+   void moverRainha(int movimentacao) {
+      if (movimentacao <= 0) return;
+      printf("Esquerda - movimentacao %d\n", 9 - movimentacao);
+   }
+   void moverCavalo() {
+      int cima, direita;
 
+      for (cima = 1; cima <= 2; cima++) {
+         if (cima == 3) break;
+         printf("Cima\n");
 
+         for (direita = 1; direita <= 1; ) {
+            if (cima < 2) {
+               direita++;
+               continue;
+            }
+            printf("Direita\n");
+            direita++;
+         }
+      }
+   }
+
+void moverBispoLoops () {
+   int vertical = 1, horizontal = 1;
+
+   while (vertical <= 5) {
+      for (horizontal = 1; horizontal <= 1; horizontal++) {
+      printf ("Cima, Direita - movimentacao %d\n", vertical);
+   }
+   vertical++;
+  }
+}
 
 
 
